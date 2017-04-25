@@ -1,4 +1,4 @@
-package com.doronzehavi.newsitem.controllers;
+package com.doronzehavi.newsitemweb.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
