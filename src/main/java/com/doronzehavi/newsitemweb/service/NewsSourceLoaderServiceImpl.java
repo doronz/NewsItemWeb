@@ -35,10 +35,6 @@ public class NewsSourceLoaderServiceImpl implements NewsSourceLoaderService {
     public Future<List<NewsSource>> fetchAllNewsSourcesFromApi(){
 
         String request = "https://newsapi.org/v1/sources?language=en&country=us";
-        /*ResponseEntity<List<NewsSource>> newsSourcesResponse =
-                restTemplate.exchange(request,
-                        HttpMethod.GET, null, new ParameterizedTypeReference<List<NewsSource>>() {
-                        });*/
         ResponseEntity<NewsSourceResponse> newsSourcesResponse =
                 restTemplate.exchange(request,
                         HttpMethod.GET, null, NewsSourceResponse.class);

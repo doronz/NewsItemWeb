@@ -1,28 +1,39 @@
 package com.doronzehavi.newsitemweb.model.item;
 
+import com.doronzehavi.newsitemweb.model.core.BaseEntity;
 import com.doronzehavi.newsitemweb.model.item.FeedItem;
 import com.doronzehavi.newsitemweb.model.source.NewsSource;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.text.DateFormat;
 import java.util.Date;
 
 @Entity
-public class NewsItem implements FeedItem {
+public class NewsItem extends BaseEntity implements FeedItem {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    private String title;
+
     private String author;
+    private String title;
+    @Column(length = 512)
+    @JsonProperty("description")
     private String summary;
     private String url;
+    @Column(length = 512)
+    private String urlToImage;
+    @JsonProperty("publishedAt")
+    @DateTimeFormat(pattern = "dd/mm/yyyy")
     private Date date;
 
     @ManyToOne
     private NewsSource newsSource;
 
-    public NewsItem(){}
+    protected NewsItem(){
+        super();
+    }
+
 
     @Override
     public String toString() {
@@ -33,6 +44,14 @@ public class NewsItem implements FeedItem {
                 ", url='" + url + '\'' +
                 ", date=" + date +
                 '}';
+    }
+
+    public NewsSource getNewsSource() {
+        return newsSource;
+    }
+
+    public void setNewsSource(NewsSource newsSource) {
+        this.newsSource = newsSource;
     }
 
     public String getTitle() {
@@ -56,6 +75,15 @@ public class NewsItem implements FeedItem {
     }
 
     public void setSummary(String summary) {
+        try {
+            int size = getClass().getDeclaredField("summary").getAnnotation(Column.class).length();
+            int inLength = summary.length();
+            if (inLength > size)
+            {
+                summary = summary.substring(0, size);
+            }
+        } catch (NoSuchFieldException | SecurityException | NullPointerException ex) {
+        }
         this.summary = summary;
     }
 
@@ -75,4 +103,11 @@ public class NewsItem implements FeedItem {
         this.date = date;
     }
 
+    public String getUrlToImage() {
+        return urlToImage;
+    }
+
+    public void setUrlToImage(String urlToImage) {
+        this.urlToImage = urlToImage;
+    }
 }

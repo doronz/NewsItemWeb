@@ -1,7 +1,7 @@
 package com.doronzehavi.newsitemweb.model.item;
 
-/**
- * Created by doronzehavi on 4/23/17.
- */
+import com.doronzehavi.newsitemweb.model.core.BaseEntity;
+
+
 public interface FeedItem {
 }

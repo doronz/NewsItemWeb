@@ -8,9 +8,10 @@
         <property name="dialect">org.hibernate.dialect.H2Dialect</property>
 
         <!-- Create the database schema on startup -->
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create</property>
 
         <!-- Names the annotated entity classes -->
         <mapping class="com.doronzehavi.newsitemweb.model.item.NewsItem"/>
+        <mapping class="com.doronzehavi.newsitemweb.model.source.NewsSource"/>
     </session-factory>
 </hibernate-configuration>

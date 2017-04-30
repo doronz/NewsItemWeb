@@ -4,10 +4,12 @@ import com.doronzehavi.newsitemweb.model.item.NewsItem;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
@@ -23,7 +25,9 @@ public class NewsItemDaoImpl implements NewsItemDao{
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<NewsItem> criteria = builder.createQuery(NewsItem.class);
-        criteria.from(NewsItem.class);
+        Root<NewsItem> newsItemRoot = criteria.from(NewsItem.class);
+        criteria.select(newsItemRoot);
+        criteria.orderBy(builder.desc(newsItemRoot.get("date")));
 
         List<NewsItem> newsItemList = session.createQuery(criteria).getResultList();
 
