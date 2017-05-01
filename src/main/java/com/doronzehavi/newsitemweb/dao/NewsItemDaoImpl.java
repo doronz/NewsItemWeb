@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -15,57 +18,48 @@ import java.util.List;
 @Repository
 public class NewsItemDaoImpl implements NewsItemDao{
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    private final EntityManagerFactory entityManagerFactory;
+
+    public NewsItemDaoImpl() {
+        entityManagerFactory = Persistence.createEntityManagerFactory( "com.doronzehavi.newsitem" );
+
+    }
 
     @Override
     public List<NewsItem> fetchAllNewsItems() {
 
-        Session session = sessionFactory.openSession();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<NewsItem> criteria = builder.createQuery(NewsItem.class);
         Root<NewsItem> newsItemRoot = criteria.from(NewsItem.class);
-        criteria.select(newsItemRoot);
         criteria.orderBy(builder.desc(newsItemRoot.get("date")));
 
-        List<NewsItem> newsItemList = session.createQuery(criteria).getResultList();
+        List<NewsItem> newsItemList = entityManager.createQuery(criteria).getResultList();
 
-        session.close();
+        entityManager.close();
 
         return newsItemList;
     }
 
     @Override
     public void saveAll(List<NewsItem> newsItems){
-        Session session = sessionFactory.openSession();
-
-        session.beginTransaction();
-
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
         for (NewsItem newsItem : newsItems){
-            session.saveOrUpdate(newsItem);
+            entityManager.persist(newsItem);
         }
-        session.getTransaction().commit();
-
-        session.close();
+        entityManager.getTransaction().commit();
+        entityManager.close();
     }
 
     @Override
     public void save(NewsItem newsItem) {
-        // Open a session
-        Session session = sessionFactory.openSession();
-
-        // Begin a transaction
-        session.beginTransaction();
-
-        // Save the news newsItem
-        session.saveOrUpdate(newsItem);
-
-        // Commit the transaction
-        session.getTransaction().commit();
-
-        // Close the session
-        session.close();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.persist(newsItem);
+        entityManager.getTransaction().commit();
+        entityManager.close();
     }
 
 }

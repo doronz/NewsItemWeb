@@ -6,7 +6,6 @@ import com.doronzehavi.newsitemweb.model.item.NewsItem;
 import com.doronzehavi.newsitemweb.model.source.NewsSource;
 import com.doronzehavi.newsitemweb.service.NewsItemLoaderService;
 import com.doronzehavi.newsitemweb.service.NewsSourceLoaderService;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -51,7 +50,7 @@ public class AppRunner implements CommandLineRunner {
         List<NewsSource> newsSourceList = futureNewsSourcesList.get();
         newsSourceDao.saveAll(newsSourceList);
 
-        Future<List<NewsItem>> futureNewsItemList = newsItemLoaderService.fetchAllNewsSourcesFromApi();
+        Future<List<NewsItem>> futureNewsItemList = newsItemLoaderService.fetchAllNewsItemsFromApi();
         while (!(futureNewsItemList.isDone())) {
             Thread.sleep(50); //50-millisecond pause between each check
         }

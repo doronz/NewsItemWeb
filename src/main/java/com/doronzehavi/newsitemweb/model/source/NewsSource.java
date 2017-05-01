@@ -4,8 +4,10 @@ import com.doronzehavi.newsitemweb.model.core.BaseEntity;
 import com.doronzehavi.newsitemweb.model.item.NewsItem;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.annotation.*;
 
 import javax.persistence.*;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -16,7 +18,12 @@ import java.util.List;
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
 @Entity
-public class NewsSource extends BaseEntity implements ItemSource {
+@Table(name="newssource")
+public class NewsSource implements ItemSource {
+
+    @Id
+    @JsonProperty("id")
+    private String id;
 
     private String name;
 
@@ -24,10 +31,8 @@ public class NewsSource extends BaseEntity implements ItemSource {
     private String description;
     private String url;
 
+    @Column(name = "show_in_feed")
     private boolean showInFeed;
-
-    @JsonProperty("id")
-    private String newsSourceId;
 
 
     @OneToMany(mappedBy = "newsSource", cascade = CascadeType.ALL)
@@ -45,12 +50,12 @@ public class NewsSource extends BaseEntity implements ItemSource {
         this.url = url;
     }
 
-    public String getNewsSourceId() {
-        return newsSourceId;
+    public String getId() {
+        return id;
     }
 
-    public void setNewsSourceId(String newsSourceId) {
-        this.newsSourceId = newsSourceId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

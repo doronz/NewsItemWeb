@@ -11,9 +11,10 @@ import java.text.DateFormat;
 import java.util.Date;
 
 @Entity
+@Table(name="newsitem")
 public class NewsItem extends BaseEntity implements FeedItem {
 
-
+    private static final int TITLE_LENGTH = 255;
 
     private String author;
     private String title;
@@ -21,29 +22,19 @@ public class NewsItem extends BaseEntity implements FeedItem {
     @JsonProperty("description")
     private String summary;
     private String url;
-    @Column(length = 512)
+    // TODO: find out why the underscores are being added by the framework
+    @Column(length = 512, name = "url_to_image")
     private String urlToImage;
     @JsonProperty("publishedAt")
     @DateTimeFormat(pattern = "dd/mm/yyyy")
     private Date date;
 
     @ManyToOne
+    @JoinColumn(name="newssource_id")
     private NewsSource newsSource;
 
     protected NewsItem(){
         super();
-    }
-
-
-    @Override
-    public String toString() {
-        return "NewsItem{" +
-                "title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", summary='" + summary + '\'' +
-                ", url='" + url + '\'' +
-                ", date=" + date +
-                '}';
     }
 
     public NewsSource getNewsSource() {
@@ -59,7 +50,7 @@ public class NewsItem extends BaseEntity implements FeedItem {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title.length() > TITLE_LENGTH ? title.substring(0,TITLE_LENGTH) : title;
     }
 
     public String getAuthor() {

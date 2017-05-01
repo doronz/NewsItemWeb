@@ -7,6 +7,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
@@ -14,53 +17,51 @@ import java.util.List;
 @Repository
 public class NewsSourceDaoImpl implements NewsSourceDao {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    private final EntityManagerFactory entityManagerFactory;
+
+    public NewsSourceDaoImpl() {
+        this.entityManagerFactory = Persistence.createEntityManagerFactory( "com.doronzehavi.newsitem" );
+    }
 
     @Override
     public void saveAll(List<NewsSource> sources){
-        Session session = sessionFactory.openSession();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        session.beginTransaction();
+        entityManager.getTransaction().begin();
 
         for (NewsSource newsSource : sources){
-            session.saveOrUpdate(newsSource);
+            entityManager.persist(newsSource);
         }
-        session.getTransaction().commit();
+        entityManager.getTransaction().commit();
 
-        session.close();
+        entityManager.close();
     }
 
     @Override
     public void save(NewsSource newsSource) {
-        // Open a session
-        Session session = sessionFactory.openSession();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        // Begin a transaction
-        session.beginTransaction();
+        entityManager.getTransaction().begin();
 
-        // Save the news source
-        session.saveOrUpdate(newsSource);
+        entityManager.persist(newsSource);
 
-        // Commit the transaction
-        session.getTransaction().commit();
+        entityManager.getTransaction().commit();
 
-        // Close the session
-        session.close();
+        entityManager.close();
     }
 
     @Override
     public List<NewsSource> fetchAllNewsSources() {
 
-        Session session = sessionFactory.openSession();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<NewsSource> criteria = builder.createQuery(NewsSource.class);
         criteria.from(NewsSource.class);
 
-        List<NewsSource> mewsSourceList = session.createQuery(criteria).getResultList();
+        List<NewsSource> mewsSourceList = entityManager.createQuery(criteria).getResultList();
 
-        session.close();
+        entityManager.close();
 
         return mewsSourceList;
     }

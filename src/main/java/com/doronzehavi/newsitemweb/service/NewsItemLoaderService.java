@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.concurrent.Future;
 
 public interface NewsItemLoaderService {
-    public Future<List<NewsItem>> fetchAllNewsSourcesFromApi();
+    public Future<List<NewsItem>> fetchAllNewsItemsFromApi();
 }

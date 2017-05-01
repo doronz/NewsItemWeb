@@ -42,17 +42,20 @@ public class NewsItemLoaderServiceImpl implements NewsItemLoaderService {
     @Async
     @Scheduled(fixedDelay = 900000) // 15 minutes
     @SuppressWarnings("unchecked")
-    public Future<List<NewsItem>> fetchAllNewsSourcesFromApi(){
+    public Future<List<NewsItem>> fetchAllNewsItemsFromApi(){
         List<NewsSource> sources = newsSourceDao.fetchAllNewsSources();
         List<NewsItem> newsItems = new ArrayList<>();
         for (NewsSource source : sources) {
-            String request = "https://newsapi.org/v1/articles?apikey=" + NEWSAPI_API_KEY + "&source=" + source.getNewsSourceId();
+            String request = "https://newsapi.org/v1/articles?apikey=" + NEWSAPI_API_KEY + "&source=" + source.getId();
             ResponseEntity<NewsItemResponse> newsItemResponse =
                     restTemplate.exchange(request,
                             HttpMethod.GET, null, NewsItemResponse.class);
             NewsItemResponse response = newsItemResponse.getBody();
-            newsItems.addAll(response.getNewsItemList());
-
+            List<NewsItem> itemsFromSource = response.getNewsItemList();
+            for (NewsItem item : itemsFromSource){
+                item.setNewsSource(source);
+            }
+            newsItems.addAll(itemsFromSource);
         }
         return new AsyncResult<>(newsItems);
     }

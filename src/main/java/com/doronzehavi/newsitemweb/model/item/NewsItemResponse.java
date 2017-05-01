@@ -11,11 +11,6 @@ public class NewsItemResponse {
     @JsonProperty("articles")
     private List<NewsItem> newsItemList;
 
-    @JsonProperty("source")
-    private String sourceId;
-
-    // TODO: Map NewsSource ID for each item
-
     public List<NewsItem> getNewsItemList() {
         return newsItemList;
     }
@@ -24,11 +19,4 @@ public class NewsItemResponse {
         this.newsItemList = newsItemList;
     }
 
-    public String getSourceId() {
-        return sourceId;
-    }
-
-    public void setSourceId(String sourceId) {
-        this.sourceId = sourceId;
-    }
 }
