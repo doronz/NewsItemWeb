@@ -4,6 +4,9 @@ import com.doronzehavi.newsitemweb.model.item.NewsItem;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,9 +21,14 @@ import java.util.List;
 @Repository
 public class NewsItemDaoImpl implements NewsItemDao{
 
+    private static final int PAGE_SIZE = 16;
     private final EntityManagerFactory entityManagerFactory;
 
-    public NewsItemDaoImpl() {
+    private final NewsItemRepository newsItemRepository;
+
+    @Autowired
+    public NewsItemDaoImpl(NewsItemRepository newsItemRepository) {
+        this.newsItemRepository = newsItemRepository;
         entityManagerFactory = Persistence.createEntityManagerFactory( "com.doronzehavi.newsitem" );
 
     }
@@ -40,6 +48,13 @@ public class NewsItemDaoImpl implements NewsItemDao{
         entityManager.close();
 
         return newsItemList;
+    }
+
+    @Override
+    public Page<NewsItem> fetchNewsItemsByPage(int pageNumber) {
+        PageRequest request =
+                new PageRequest(pageNumber - 1, PAGE_SIZE, Sort.Direction.DESC, "date");
+        return newsItemRepository.findAll(request);
     }
 
     @Override

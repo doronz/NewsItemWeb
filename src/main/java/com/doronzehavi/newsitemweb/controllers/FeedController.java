@@ -3,6 +3,7 @@ package com.doronzehavi.newsitemweb.controllers;
 import com.doronzehavi.newsitemweb.model.item.NewsItem;
 import com.doronzehavi.newsitemweb.service.NewsItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +20,12 @@ public class FeedController {
     @RequestMapping(value = "/feed")
     public String listNewsItems(Model model) {
 
-        List<NewsItem> newsFeedList = newsItemService.fetchAllNewsItems();
+//        List<NewsItem> newsFeedList = newsItemService.fetchAllNewsItems();
+//        model.addAttribute("newsfeed", newsFeedList);
+        Page<NewsItem> newsFeedPage = newsItemService.fetchNewsItemsByPage(1);
 
-        model.addAttribute("newsfeed", newsFeedList);
+        model.addAttribute("newsfeed", newsFeedPage.getContent());
+
         return "feed";
     }
 

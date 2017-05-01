@@ -16,6 +16,7 @@ public class NewsItem extends BaseEntity implements FeedItem {
 
     private static final int TITLE_LENGTH = 255;
 
+    @Column(length = 255)
     private String author;
     private String title;
     @Column(length = 512)
@@ -58,6 +59,15 @@ public class NewsItem extends BaseEntity implements FeedItem {
     }
 
     public void setAuthor(String author) {
+        try {
+            int size = getClass().getDeclaredField("author").getAnnotation(Column.class).length();
+            int inLength = author.length();
+            if (inLength > size)
+            {
+                author = author.substring(0, size);
+            }
+        } catch (NoSuchFieldException | SecurityException | NullPointerException ex) {
+        }
         this.author = author;
     }
 
