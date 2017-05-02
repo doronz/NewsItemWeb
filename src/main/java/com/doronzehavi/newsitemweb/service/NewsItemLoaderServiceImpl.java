@@ -28,9 +28,6 @@ public class NewsItemLoaderServiceImpl implements NewsItemLoaderService {
     private static final String NEWSAPI_API_KEY = "0ca610c61a054ab58ab294304e556431";
 
     @Autowired
-    private SessionFactory sessionFactory;
-
-    @Autowired
     private NewsSourceDao newsSourceDao;
 
     private final RestTemplate restTemplate;
