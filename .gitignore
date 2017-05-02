@@ -35,3 +35,15 @@ overridedb.*
 .factorypath
 dump.rdb
 transaction-log
+/out
+/info
+/hooks
+/gradle
+.gradle*
+/data
+HEAD
+config
+description
+gradlew*
+*.gradle
+
