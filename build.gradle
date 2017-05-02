@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'org.springframework.boot' version '1.4.3.RELEASE'
+}
+
+group 'com.doronzehavi'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    baseName = 'newsitemweb'
+    version = '0.0.1-SNAPSHOT'
+}
+
+task stage{
+    dependsOn build
+}
+
+springBoot {
+    mainClass = "com.doronzehavi.newsitemweb.Application"
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    compile 'org.springframework.boot:spring-boot-starter-data-rest'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+//    compile "org.springframework.data:spring-data-rest-hal-browser"
+    compile 'org.springframework:spring-orm:4.2.5.RELEASE'
+//    compile 'org.hibernate:hibernate-core:5.2.1.Final'
+    compile 'org.apache.tomcat:tomcat-dbcp:8.0.32'
+    compile 'com.h2database:h2:1.4.191'
+}
