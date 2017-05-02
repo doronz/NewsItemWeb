@@ -20,9 +20,6 @@ import java.util.concurrent.Future;
 @Service
 public class NewsSourceLoaderServiceImpl implements NewsSourceLoaderService {
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
     private final RestTemplate restTemplate;
 
     public NewsSourceLoaderServiceImpl(RestTemplateBuilder restTemplateBuilder){
