@@ -42,5 +42,4 @@ transaction-log
 HEAD
 config
 description
-
-
+.gradle/3*
