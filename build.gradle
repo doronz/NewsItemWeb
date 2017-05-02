@@ -20,6 +20,10 @@ task stage{
     dependsOn build
 }
 
+springBoot {
+    mainClass = "com.doronzehavi.newsitemweb.Application"
+}
+
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
     compile 'org.springframework.boot:spring-boot-starter-data-rest'
