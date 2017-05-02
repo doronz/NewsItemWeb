@@ -21,10 +21,7 @@ import java.util.concurrent.Future;
 
 @Service
 public class NewsSourceServiceImpl implements NewsSourceService {
-
-    @Autowired
-    private SessionFactory sessionFactory;
-
+    
     @Autowired
     private NewsSourceDao newsSourceDao;
 
