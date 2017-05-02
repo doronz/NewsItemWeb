@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NewsItem.iml" filepath="$PROJECT_DIR$/.idea/modules/NewsItem.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NewsItem_main.iml" filepath="$PROJECT_DIR$/.idea/modules/NewsItem_main.iml" group="NewsItem" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NewsItem_test.iml" filepath="$PROJECT_DIR$/.idea/modules/NewsItem_test.iml" group="NewsItem" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NewsItemWeb.iml" filepath="$PROJECT_DIR$/.idea/modules/NewsItemWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NewsItemWeb_main.iml" filepath="$PROJECT_DIR$/.idea/modules/NewsItemWeb_main.iml" group="NewsItemWeb" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NewsItemWeb_test.iml" filepath="$PROJECT_DIR$/.idea/modules/NewsItemWeb_test.iml" group="NewsItemWeb" />
     </modules>
   </component>
 </project>

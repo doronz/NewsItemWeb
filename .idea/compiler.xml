@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="NewsItem_main" target="1.8" />
       <module name="NewsItem_test" target="1.8" />
+      <module name="NewsItemWeb_main" target="1.8" />
+      <module name="NewsItemWeb_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
