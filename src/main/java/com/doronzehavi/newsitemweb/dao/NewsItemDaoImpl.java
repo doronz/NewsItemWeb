@@ -1,13 +1,10 @@
 package com.doronzehavi.newsitemweb.dao;
 
 import com.doronzehavi.newsitemweb.model.item.NewsItem;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
