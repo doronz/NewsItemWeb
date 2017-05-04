@@ -18,9 +18,6 @@ import java.util.concurrent.Future;
 public class AppRunner implements CommandLineRunner {
 
     @Autowired
-    private SessionFactory sessionFactory;
-
-    @Autowired
     private NewsSourceDao newsSourceDao;
 
     @Autowired
