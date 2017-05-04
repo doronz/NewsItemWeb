@@ -39,6 +39,5 @@ transaction-log
 /hooks
 /data
 HEAD
-config
 description
 .gradle/3*
