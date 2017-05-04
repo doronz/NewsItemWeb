@@ -1,0 +1,14 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"  version="1.0">
+    <persistence-unit name="com.doronzehavi.newsitem" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>com.doronzehavi.newsitemweb.model.item.NewsItem</class>
+        <class>com.doronzehavi.newsitemweb.model.source.NewsSource</class>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.username" value="sa"/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.connection.url" value="jdbc:h2:tcp://localhost/~/Documents/Development/NewsItemWeb/data/newsitem"/>
+        </properties>
+    </persistence-unit>
+</persistence>
