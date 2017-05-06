@@ -11,8 +11,6 @@ w?
 .factorypath
 .recommenders
 bin
-build
-lib/
 target
 .factorypath
 .springBeans
@@ -41,3 +39,4 @@ transaction-log
 HEAD
 description
 .gradle/3*
+/target/

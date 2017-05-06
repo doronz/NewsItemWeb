@@ -8,12 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @Configuration
-@PropertySource("app.properties")
 @EnableJpaRepositories("com.doronzehavi.newsitemweb.dao")
 public class AppConfig {
     @Autowired
     private Environment env;
-
-
-
 }
