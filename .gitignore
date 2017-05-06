@@ -40,3 +40,5 @@ HEAD
 description
 .gradle/3*
 /target/
+/objects/
+/refs/
