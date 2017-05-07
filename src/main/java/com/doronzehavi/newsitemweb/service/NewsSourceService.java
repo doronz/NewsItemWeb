@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public interface NewsSourceService {
-    public List<NewsSource> fetchAllNewsSources();
+    public List<NewsSource> findAll();
 
     public void save(NewsSource newsSource);
 }

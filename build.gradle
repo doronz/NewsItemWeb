@@ -36,7 +36,8 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
     compile 'org.springframework.boot:spring-boot-starter-data-rest'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-    compile 'com.github.jsimone:webapp-runner:8.5.11.3'
+    compile 'org.apache.tomcat:tomcat-dbcp:8.5.14'
+    compile 'com.github.jsimone:webapp-runner-main:8.5.11.3'
     compile 'org.postgresql:postgresql:9.4-1201-jdbc4'
 
 }

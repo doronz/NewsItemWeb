@@ -1,68 +1,46 @@
 package com.doronzehavi.newsitemweb.dao;
 
-import com.doronzehavi.newsitemweb.model.item.NewsItem;
 import com.doronzehavi.newsitemweb.model.source.NewsSource;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class NewsSourceDaoImpl implements NewsSourceDao {
 
-    private final EntityManagerFactory entityManagerFactory;
+    private final NewsSourceRepository newsSourceRepository;
 
-    public NewsSourceDaoImpl() {
-        this.entityManagerFactory = Persistence.createEntityManagerFactory( "com.doronzehavi.newsitem" );
+    @Autowired
+    public NewsSourceDaoImpl(NewsSourceRepository newsSourceRepository) {
+        this.newsSourceRepository = newsSourceRepository;
     }
 
     @Override
     public void saveAll(List<NewsSource> sources){
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        entityManager.getTransaction().begin();
-
         for (NewsSource newsSource : sources){
-            entityManager.persist(newsSource);
+            newsSourceRepository.save(newsSource);
         }
-        entityManager.getTransaction().commit();
-
-        entityManager.close();
     }
 
     @Override
-    public void save(NewsSource newsSource) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        entityManager.getTransaction().begin();
-
-        entityManager.persist(newsSource);
-
-        entityManager.getTransaction().commit();
-
-        entityManager.close();
+    public NewsSource save(NewsSource newsSource) {
+        return newsSourceRepository.save(newsSource);
     }
 
     @Override
-    public List<NewsSource> fetchAllNewsSources() {
-
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<NewsSource> criteria = builder.createQuery(NewsSource.class);
-        criteria.from(NewsSource.class);
-
-        List<NewsSource> mewsSourceList = entityManager.createQuery(criteria).getResultList();
-
-        entityManager.close();
-
-        return mewsSourceList;
+    public List<NewsSource> findAll() {
+        List<NewsSource> results = new ArrayList<>();
+        for (NewsSource newsSource : newsSourceRepository.findAll(sortByNameAsc())) {
+            results.add(newsSource);
+        }
+        return results;
     }
+
+    private Sort sortByNameAsc() {
+        return new Sort(Sort.Direction.ASC, "name");
+    }
+
 }

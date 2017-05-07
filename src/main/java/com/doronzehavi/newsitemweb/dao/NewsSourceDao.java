@@ -6,10 +6,10 @@ import java.util.List;
 
 
 public interface NewsSourceDao {
-    public List<NewsSource> fetchAllNewsSources();
+    List<NewsSource> findAll();
 
-    public void save(NewsSource newsSource);
+    NewsSource save(NewsSource newsSource);
 
-    public void saveAll(List<NewsSource> sources);
+    void saveAll(List<NewsSource> sources);
 
 }

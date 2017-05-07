@@ -15,11 +15,6 @@ public class NewsItemServiceImpl implements NewsItemService {
     @Autowired
     private NewsItemDao newsItemDao;
 
-    @Override
-    public List<NewsItem> fetchAllNewsItems() {
-        return newsItemDao.fetchAllNewsItems();
-    }
-
     public Page<NewsItem> fetchNewsItemsByPage(int pageNumber){
         return newsItemDao.fetchNewsItemsByPage(pageNumber);
     }

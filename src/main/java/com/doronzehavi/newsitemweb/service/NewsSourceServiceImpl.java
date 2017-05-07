@@ -26,8 +26,8 @@ public class NewsSourceServiceImpl implements NewsSourceService {
     private NewsSourceDao newsSourceDao;
 
     @Override
-    public List<NewsSource> fetchAllNewsSources() {
-        return newsSourceDao.fetchAllNewsSources();
+    public List<NewsSource> findAll() {
+        return newsSourceDao.findAll();
     }
 
     @Override

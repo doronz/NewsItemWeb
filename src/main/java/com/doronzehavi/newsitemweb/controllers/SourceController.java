@@ -1,6 +1,5 @@
 package com.doronzehavi.newsitemweb.controllers;
 
-import com.doronzehavi.newsitemweb.model.item.NewsItem;
 import com.doronzehavi.newsitemweb.model.source.NewsSource;
 import com.doronzehavi.newsitemweb.service.NewsSourceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class SourceController {
     @RequestMapping(value = "/sources")
     public String listNewsItems(Model model) {
 
-        List<NewsSource> sourcesList = newsSourceService.fetchAllNewsSources();
+        List<NewsSource> sourcesList = newsSourceService.findAll();
 
         model.addAttribute("sourceList", sourcesList);
         return "sources";

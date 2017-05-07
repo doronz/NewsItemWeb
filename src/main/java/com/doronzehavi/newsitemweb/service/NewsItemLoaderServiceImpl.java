@@ -40,7 +40,7 @@ public class NewsItemLoaderServiceImpl implements NewsItemLoaderService {
     @Scheduled(fixedDelay = 900000) // 15 minutes
     @SuppressWarnings("unchecked")
     public Future<List<NewsItem>> fetchAllNewsItemsFromApi(){
-        List<NewsSource> sources = newsSourceDao.fetchAllNewsSources();
+        List<NewsSource> sources = newsSourceDao.findAll();
         List<NewsItem> newsItems = new ArrayList<>();
         for (NewsSource source : sources) {
             String request = "https://newsapi.org/v1/articles?apikey=" + NEWSAPI_API_KEY + "&source=" + source.getId();
