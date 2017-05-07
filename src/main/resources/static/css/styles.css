@@ -248,3 +248,9 @@ html, body {
 .mdl-button {
     padding: 0px;
 }
+
+.mdl-nav-fab {
+    display: block;
+    margin: auto;
+    width: 40%;
+}
