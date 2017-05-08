@@ -252,5 +252,12 @@ html, body {
 .mdl-nav-fab {
     display: block;
     margin: auto;
-    width: 40%;
+}
+
+.show {
+    visibility: visible;
+}
+
+.hide {
+    visibility: hidden;
 }

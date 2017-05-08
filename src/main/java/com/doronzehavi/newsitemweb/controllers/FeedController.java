@@ -18,31 +18,33 @@ public class FeedController {
     @Autowired
     private NewsItemService newsItemService;
 
-    @RequestMapping(value = "/feed")
+    @RequestMapping(value = {"/feed", "/feed/0"})
     public String showFeed(Model model) {
         Page<NewsItem> page = newsItemService.fetchNewsItemsByPage(1);
-        model.addAttribute("newsfeed", page.getContent());
-        int current = page.getNumber();
+        int current = page.getNumber() + 1;
         int next = current + 1;
-        int last = page.getTotalPages() - 1;
+        int last = page.getTotalPages();
 
+        model.addAttribute("newsfeed", page.getContent());
         model.addAttribute("current", current);
         model.addAttribute("next", next);
+        model.addAttribute("prev", null);
         model.addAttribute("last", last);
         return "feed";
     }
 
-    @RequestMapping(value = "/feed/{pageNumber}", method = RequestMethod.GET)
+    @RequestMapping(value = "/feed/{pageNumber}")
     public String showFeedByPage(@PathVariable Integer pageNumber, Model model) {
         Page<NewsItem> page = newsItemService.fetchNewsItemsByPage(pageNumber);
-        int current = page.getNumber();
+        int current = pageNumber;
         int next = current + 1;
         int prev = current - 1;
         int last = page.getTotalPages() - 1;
 
+        model.addAttribute("newsfeed", page.getContent());
         model.addAttribute("current", current);
-        model.addAttribute("next", next);
-        model.addAttribute("prev", prev);
+        model.addAttribute("next", next <= last ? next : null);
+        model.addAttribute("prev", prev >= 0 ? prev : null);
         model.addAttribute("last", last);
 
         return "feed";
