@@ -35,24 +35,26 @@ public class AppRunner implements CommandLineRunner {
 
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         // TODO: Only load news sources if they haven't been updated in a while
-
         Future<List<NewsSource>> futureNewsSourcesList = newsSourceLoaderService.fetchAllNewsSourcesFromApi();
 
-        while (!(futureNewsSourcesList.isDone())) {
-            Thread.sleep(50); //50-millisecond pause between each check
+        try {
+            while (!(futureNewsSourcesList.isDone())) {
+                Thread.sleep(50); //50-millisecond pause between each check
+            }
+
+            List<NewsSource> newsSourceList = futureNewsSourcesList.get();
+            newsSourceDao.saveAll(newsSourceList);
+
+            Future<List<NewsItem>> futureNewsItemList = newsItemLoaderService.fetchAllNewsItemsFromApi();
+            while (!(futureNewsItemList.isDone())) {
+                Thread.sleep(50); //50-millisecond pause between each check
+            }
+            List<NewsItem> newsItemList = futureNewsItemList.get();
+            newsItemDao.saveAll(newsItemList);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-
-        List<NewsSource> newsSourceList = futureNewsSourcesList.get();
-        newsSourceDao.saveAll(newsSourceList);
-
-        Future<List<NewsItem>> futureNewsItemList = newsItemLoaderService.fetchAllNewsItemsFromApi();
-        while (!(futureNewsItemList.isDone())) {
-            Thread.sleep(50); //50-millisecond pause between each check
-        }
-        List<NewsItem> newsItemList = futureNewsItemList.get();
-        newsItemDao.saveAll(newsItemList);
-
     }
 }

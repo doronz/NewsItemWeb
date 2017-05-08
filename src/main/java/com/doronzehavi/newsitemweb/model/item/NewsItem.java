@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -18,10 +20,15 @@ public class NewsItem extends BaseEntity implements FeedItem {
 
     @Column(length = 255)
     private String author;
+    @NotNull
+    @Size(min = 3)
     private String title;
     @Column(length = 512)
+    @NotNull
+    @Size(min = 3)
     @JsonProperty("description")
     private String summary;
+    @NotNull
     private String url;
     // TODO: find out why the underscores are being added by the framework
     @Column(length = 512, name = "url_to_image")
