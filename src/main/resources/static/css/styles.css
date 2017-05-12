@@ -1,263 +1,51 @@
-/**
- * Copyright 2015 Google Inc. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
-html, body {
-  font-family: 'Roboto', 'Helvetica', sans-serif;
+html {
+  height: 100%;
+}
+
+.doron-body {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
   margin: 0;
-  padding: 0;
-}
-.mdl-doron .mdl-layout__header-row {
-  padding-left: 40px;
-}
-.mdl-doron .mdl-layout.is-small-screen .mdl-layout__header-row h3 {
-  font-size: inherit;
-}
-.mdl-doron .mdl-layout__tab-bar-button {
-  display: none;
-}
-.mdl-doron .mdl-layout.is-small-screen .mdl-layout__tab-bar .mdl-button {
-  display: none;
-}
-.mdl-doron .mdl-layout:not(.is-small-screen) .mdl-layout__tab-bar,
-.mdl-doron .mdl-layout:not(.is-small-screen) .mdl-layout__tab-bar-container {
-  overflow: visible;
-}
-.mdl-doron .mdl-layout__tab-bar-container {
-  height: 64px;
-}
-.mdl-doron .mdl-layout__tab-bar {
-  padding: 0;
-  padding-left: 16px;
   box-sizing: border-box;
   height: 100%;
   width: 100%;
 }
-.mdl-doron .mdl-layout__tab-bar .mdl-layout__tab {
-  height: 64px;
-  line-height: 64px;
-}
-.mdl-doron .mdl-layout__tab-bar .mdl-layout__tab.is-active::after {
-  background-color: white;
-  height: 4px;
-}
-.mdl-doron main > .mdl-layout__tab-panel {
-  padding: 8px;
-  padding-top: 48px;
-}
-.mdl-doron .mdl-card {
-  height: auto;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-.mdl-doron .mdl-card > * {
-  height: auto;
-}
-.mdl-doron .mdl-card .mdl-card__supporting-text {
-  margin: 0px 20px 0px 20px;
-  -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+
+.doron-menu {
+  background: none;
+  border: none;
+  width: 24px;
+  height: 24px;
   padding: 0;
-  color: inherit;
-  width: calc(100% - 80px);
-}
-.mdl-doron.mdl-doron .mdl-card__supporting-text h4 {
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-.mdl-doron .mdl-card__actions {
   margin: 0;
-  padding: 4px 20px;
-  color: inherit;
-}
-.mdl-doron .mdl-card__actions a {
-  color: #00BCD4;
-  margin: 0;
-}
-.mdl-doron .mdl-card__actions a:hover,
-.mdl-doron .mdl-card__actions a:active {
-  color: inherit;
-  background-color: transparent;
-}
-.mdl-doron .mdl-card__supporting-text + .mdl-card__actions {
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-}
-.mdl-doron #add {
-  position: absolute;
-  right: 40px;
-  top: 36px;
-  z-index: 999;
+  margin-right: 24px;
+  color: #FFF;
+  box-sizing: border-box;
 }
 
-.mdl-doron .mdl-layout__content section:not(:last-of-type) {
-  position: relative;
-  margin-bottom: 20px;
+.doron-content {
+  display: inline-flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  box-sizing: border-box;
 }
-.mdl-doron section.section--center {
-  max-width: 860px;
+
+.doron-main {
+  
 }
-.mdl-doron #features section.section--center {
-  max-width: 620px;
+
+.mdc-card {
+  margin: 8px;
 }
-.mdl-doron section > header{
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-.mdl-doron section > .section__play-btn {
-  min-height: 200px;
-}
-.mdl-doron section > header > .material-icons {
-  font-size: 3rem;
-}
-.mdl-doron section > button {
-  position: absolute;
-  z-index: 99;
-  top: 8px;
-  right: 8px;
-}
-.mdl-doron section .section__circle {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-justify-content: flex-start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-flex-grow: 0;
-      -ms-flex-positive: 0;
-          flex-grow: 0;
-  -webkit-flex-shrink: 1;
-      -ms-flex-negative: 1;
-          flex-shrink: 1;
-}
-.mdl-doron section .section__text {
-  -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  -webkit-flex-shrink: 0;
-      -ms-flex-negative: 0;
-          flex-shrink: 0;
-  padding-top: 8px;
-}
-.mdl-doron section .section__text h5 {
-  font-size: inherit;
-  margin: 0;
-  margin-bottom: 0.5em;
-}
-.mdl-doron section .section__text a {
-  text-decoration: none;
-}
-.mdl-doron section .section__circle-container > .section__circle-container__circle {
-  width: 64px;
-  height: 64px;
-  border-radius: 32px;
-  margin: 8px 0;
-}
-.mdl-doron section.section--footer .section__circle--big {
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
-  margin: 8px 32px;
-}
-.mdl-doron .is-small-screen section.section--footer .section__circle--big {
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-  margin: 8px 16px;
-}
-.mdl-doron section.section--footer {
-  padding: 64px 0;
-  margin: 0 -8px -8px -8px;
-}
-.mdl-doron section.section--center .section__text:not(:last-child) {
-  border-bottom: 1px solid rgba(0,0,0,.13);
-}
-.mdl-doron .mdl-card .mdl-card__supporting-text > h3:first-child {
-  margin-bottom: 24px;
-}
-.mdl-doron .mdl-layout__tab-panel:not(#overview) {
-  background-color: white;
-}
-.mdl-doron #features section {
-  margin-bottom: 72px;
-}
-.mdl-doron #features h4, #features h5 {
-  margin-bottom: 16px;
-}
-.mdl-doron .toc {
-  border-left: 4px solid #C1EEF4;
-  margin: 24px;
+
+.mdc-card__title--large {
+  font-size: 1.25rem;
   padding: 0;
-  padding-left: 8px;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-.mdl-doron .toc h4 {
-  font-size: 0.9rem;
-  margin-top: 0;
-}
-.mdl-doron .toc a {
-  color: #4DD0E1;
-  text-decoration: none;
-  font-size: 16px;
-  line-height: 28px;
-  display: block;
-}
-.mdl-doron .mdl-menu__container {
-  z-index: 99;
 }
 
-.thumb {
-    min-width:  200px;
-    min-height: 200px;
-    max-width:  300px;
-    max-height: 300px;
-    object-fit: cover;
-}
-
-.mdl-button {
-    padding: 0px;
-}
-
-.mdl-nav-fab {
-    display: block;
-    margin: auto;
-}
-
-.show {
-    visibility: visible;
-}
-
-.hide {
-    visibility: hidden;
+.mdc-toolbar {
+    display: -webkit-box;
 }
