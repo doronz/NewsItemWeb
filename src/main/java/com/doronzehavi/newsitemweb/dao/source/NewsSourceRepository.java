@@ -1,4 +1,4 @@
-package com.doronzehavi.newsitemweb.dao;
+package com.doronzehavi.newsitemweb.dao.source;
 
 
 import com.doronzehavi.newsitemweb.model.item.NewsItem;

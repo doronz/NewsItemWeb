@@ -1,4 +1,4 @@
-package com.doronzehavi.newsitemweb.dao;
+package com.doronzehavi.newsitemweb.dao.item;
 
 import com.doronzehavi.newsitemweb.model.item.NewsItem;
 import org.springframework.data.domain.Page;

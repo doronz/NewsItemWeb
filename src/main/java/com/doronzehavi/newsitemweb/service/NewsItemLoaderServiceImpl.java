@@ -1,12 +1,10 @@
 package com.doronzehavi.newsitemweb.service;
 
 
-import com.doronzehavi.newsitemweb.dao.NewsSourceDao;
+import com.doronzehavi.newsitemweb.dao.source.NewsSourceDao;
 import com.doronzehavi.newsitemweb.model.item.NewsItem;
 import com.doronzehavi.newsitemweb.model.item.NewsItemResponse;
 import com.doronzehavi.newsitemweb.model.source.NewsSource;
-import com.doronzehavi.newsitemweb.model.source.NewsSourceResponse;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpMethod;

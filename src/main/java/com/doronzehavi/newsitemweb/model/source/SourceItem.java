@@ -10,6 +10,6 @@ import java.util.List;
  * as NewsItems.
  */
 
-public interface ItemSource {
+public interface SourceItem {
 
 }

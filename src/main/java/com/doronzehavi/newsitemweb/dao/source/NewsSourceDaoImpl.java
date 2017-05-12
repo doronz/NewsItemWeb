@@ -1,4 +1,4 @@
-package com.doronzehavi.newsitemweb.dao;
+package com.doronzehavi.newsitemweb.dao.source;
 
 import com.doronzehavi.newsitemweb.model.source.NewsSource;
 import org.springframework.beans.factory.annotation.Autowired;

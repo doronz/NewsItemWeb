@@ -1,15 +1,11 @@
 package com.doronzehavi.newsitemweb.model.source;
 
-import com.doronzehavi.newsitemweb.model.core.BaseEntity;
 import com.doronzehavi.newsitemweb.model.item.NewsItem;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.data.annotation.*;
 
 import javax.persistence.*;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +15,9 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown=true)
 @Entity
 @Table(name="newssource")
-public class NewsSource implements ItemSource {
+public class NewsSource implements SourceItem {
+    // TODO: Add logos for sources
+    // TODO: Add constraints
 
     @Id
     @JsonProperty("id")
@@ -30,10 +28,6 @@ public class NewsSource implements ItemSource {
     @Column(length = 512)
     private String description;
     private String url;
-
-    @Column(name = "show_in_feed")
-    private boolean showInFeed;
-
 
     @OneToMany(mappedBy = "newsSource", cascade = CascadeType.ALL)
     private List<NewsItem> newsItems;
@@ -82,12 +76,4 @@ public class NewsSource implements ItemSource {
         this.url = url;
     }
 
-
-    public boolean isShowInFeed() {
-        return showInFeed;
-    }
-
-    public void setShowInFeed(boolean showInFeed) {
-        this.showInFeed = showInFeed;
-    }
 }
