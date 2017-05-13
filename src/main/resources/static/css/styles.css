@@ -42,8 +42,12 @@ html {
 }
 
 .mdc-card__title--large {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   padding: 0;
+}
+
+.mdc-card__supporting-text{
+  padding: 0px 16px;
 }
 
 .mdc-toolbar {
@@ -73,6 +77,12 @@ html {
 }
 .nav-arrow-left{
   padding-right: 8px;
+}
+
+.mdc-button {
+  line-height: 32px;
+  height: 32px;
+  font-size: 12px;
 }
 
 .show {
