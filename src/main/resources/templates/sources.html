@@ -1,59 +1,86 @@
-<!doctype html>
 <html lang="en" class="mdc-typography" xmlns:th="http://www.thymeleaf.org">
 <head>
-
-    <title>My Own Feed</title>
-    <link rel="stylesheet"
-          href="node_modules/material-components-web/dist/material-components-web.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/styles.css" th:href="@{/css/styles.css}" />
+  <title>My Own Feed | Sources</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" th:href="@{/node_modules/material-components-web/dist/material-components-web.css}" type="text/css" href="../../static/node_modules/material-components-web/dist/material-components-web.css"/>
+  <link rel="stylesheet" th:href="@{/css/styles.css}" type="text/css" href="../../static/css/styles.css"  />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
 </head>
-<body class="mdl-doron mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
-        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-        </div>
-        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-            <h3>My Own Feed</h3>
-        </div>
-        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-        </div>
-        <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
-            <a href="/" class="mdl-layout__tab">Feed</a>
-            <a href="/sources" class="mdl-layout__tab is-active">Sources</a>
-            <a href="/api/v1" class="mdl-layout__tab">API</a>
-        </div>
-    </header>
-    <main class="mdl-layout__content">
-        <div class="mdl-layout__tab-panel is-active" id="overview">
-            <section th:each="newssource : ${sourceList}" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-                <!--<header class="section__play-btn mdl-cell mdl-cell&#45;&#45;3-col-desktop mdl-cell&#45;&#45;2-col-tablet mdl-cell&#45;&#45;4-col-phone mdl-color&#45;&#45;teal-100 mdl-color-text&#45;&#45;white">-->
-                    <!--<img class="thumb" th:src="${newsSource.urlToImage}"/>-->
-                <!--</header>-->
-                <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-                    <div class="mdl-card__title">
-                        <h4 class="mdl-card__title-text" th:text="${newssource.name}">Source Name</h4>
-                    </div>
-                    <div class="mdl-card__supporting-text" th:text="${newssource.description}">Source Description</div>
-                    <div class="mdl-card__actions">
-                        <a href="#" th:href="${newssource.url}" class="mdl-button">Read more</a>
-                    </div>
-                </div>
-            </section>
-        </div>
+  <body class="doron-body mdc-typography">
+    <aside class="mdc-persistent-drawer">
+      <nav class="mdc-persistent-drawer__drawer">
+        <div class="mdc-persistent-drawer__toolbar-spacer"></div>
+        <div class="mdc-list-group">
+          <nav class="mdc-list">
+            <a class="mdc-list-item" href="/feed">
+              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">view_headline</i>Feed
+            </a>
+            <a class="mdc-list-item mdc-persistent-drawer--selected" href="/sources">
+              <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Sources
+            </a>
+          </nav>
+ 
+          <hr class="mdc-list-divider"/>
 
-        <footer class="mdl-mega-footer">
-            <div class="mdl-mega-footer--bottom-section">
-                <div class="mdl-logo">
-                    More Information
-                </div>
-                <ul class="mdl-mega-footer--link-list">
-                    <li><a href="#">Help</a></li>
-                    <li><a href="#">Privacy and Terms</a></li>
-                </ul>
-            </div>
-        </footer>
-    </main>
-</div>
-<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-</body>
+          <nav class="mdc-list">
+            <a class="mdc-list-item" href="#">
+              Log In
+            </a>
+            <a class="mdc-list-item" href="#">
+              Sign Up
+            </a>
+            <a class="mdc-list-item" href="#">
+              About
+            </a>
+          </nav>
+        </div>
+      </nav>
+    </aside>
+    <div class="doron-content">
+      <header class="mdc-toolbar mdc-elevation--z4">
+        <div class="mdc-toolbar__row">
+          <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+            <button class="doron-menu material-icons">menu</button>
+            <span class="mdc-toolbar__title catalog-title">my own feed</span>
+          </section>
+        </div>
+      </header>
+
+      <main class="doron-main">
+        <div class="mdc-grid-list">
+          
+          <div class="mdc-card" th:each="newssource : ${sourceList}">
+            <section  class="mdc-card__primary">
+              <h1 th:text="${newssource.name}" class="mdc-card__title mdc-card__title--large">ABC News</h1>
+            </section>
+            <section th:if="${newssource.description != null}" th:text="${newssource.description}" class="mdc-card__supporting-text">
+              America's Broadcasting Corp. News headlines.
+            </section>
+            <section class="mdc-card__actions">
+              <a href="#" th:href="${newssource.url}"><button class="mdc-button mdc-button--compact mdc-card__action">View</button></a>
+            </section>
+          </div>
+          </div>
+        <div class="footer "></div>
+      </main>
+    
+    </div>
+    <script th:src="@{/node_modules/material-components-web/dist/material-components-web.js}" src="../../static/node_modules/material-components-web/dist/material-components-web.js"></script>
+    <script>
+        var drawerEl = document.querySelector('.mdc-persistent-drawer');
+        var MDCPersistentDrawer = mdc.drawer.MDCPersistentDrawer;
+        var drawer = new MDCPersistentDrawer(drawerEl);
+        document.querySelector('.doron-menu').addEventListener('click', function() {
+          drawer.open = !drawer.open;
+        });
+        drawerEl.addEventListener('MDCPersistentDrawer:open', function() {
+          console.log('Received MDCPersistentDrawer:open');
+        });
+        drawerEl.addEventListener('MDCPersistentDrawer:close', function() {
+          console.log('Received MDCPersistentDrawer:close');
+        });
+      </script>
+      <script>mdc.autoInit()</script>
+  </body>
 </html>

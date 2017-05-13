@@ -1,6 +1,6 @@
 <html lang="en" class="mdc-typography" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>My Own Feed</title>
+  <title>My Own Feed | Feed</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="stylesheet" th:href="@{/node_modules/material-components-web/dist/material-components-web.css}" type="text/css" href="../../static/node_modules/material-components-web/dist/material-components-web.css"/>
   <link rel="stylesheet" th:href="@{/css/styles.css}" type="text/css" href="../../static/css/styles.css"  />
@@ -55,7 +55,7 @@
               <h1 th:text="${newsitem.title}" class="mdc-card__title mdc-card__title--large">Title goes here</h1>
               <h2 th:text="${source}" class="mdc-card__subtitle">ABC News</h2>
             </section>
-            <section th:text="${newsitem.summary}" class="mdc-card__supporting-text">
+            <section th:if="${newsitem.summary != null}" th:text="${newsitem.summary}" class="mdc-card__supporting-text">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
               tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
               veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -66,9 +66,16 @@
               <a href="#" th:href="${newsitem.url}"><button class="mdc-button mdc-button--compact mdc-card__action">Read More</button></a>
             </section>
           </div>
+          <div class="button-nav">
+            <a href="/feed/0" th:href="@{/feed/} + ${prev}">
+              <button th:classappend="${prev} ? show : hide" class="nav-button-left mdc-button"><i class="nav-arrow nav-arrow-left material-icons">arrow_back</i>Prev</button></a>
+            <a href="/feed/1" th:href="@{/feed/} + ${next}">
+              <button th:classappend="${next} ? show : hide" class="nav-button-right mdc-button">Next<i class="nav-arrow nav-arrow-right material-icons">arrow_forward</i></button></a>
+          </div>
           
+
         </div>
-        
+        <div class="footer "></div>
       </main>
     
     </div>

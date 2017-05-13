@@ -49,3 +49,41 @@ html {
 .mdc-toolbar {
     display: -webkit-box;
 }
+
+.button-nav{
+  vertical-align: middle;
+  margin: 8px;
+  height: 36px;
+}
+
+.nav-button-left{
+  float: left;
+}
+
+.nav-button-right{
+  float: right;
+}
+
+.nav-arrow {
+  vertical-align: middle !important;
+}
+
+.nav-arrow-right{
+  padding-left: 8px;
+}
+.nav-arrow-left{
+  padding-right: 8px;
+}
+
+.show {
+  visibility: visible;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.footer {
+  height: 128px;
+  background-color: #34495e;
+}
