@@ -17,18 +17,20 @@ import java.util.Date;
 public class NewsItem extends BaseEntity implements FeedItem {
 
     private static final int TITLE_LENGTH = 255;
+    private static final int AUTHOR_LENGTH = 127;
+    private static final int SUMMARY_LENGTH = 512;
 
-    @Column(length = 255)
+    @Column(length = 512)
     private String author;
     @NotNull
     @Size(min = 3)
-    private String title;
     @Column(length = 512)
-    @NotNull
-    @Size(min = 3)
+    private String title;
     @JsonProperty("description")
+    @Column(length = 512)
     private String summary;
     @NotNull
+    @Column(length = 512)
     private String url;
     // TODO: find out why the underscores are being added by the framework
     @Column(length = 512, name = "url_to_image")
@@ -58,7 +60,8 @@ public class NewsItem extends BaseEntity implements FeedItem {
     }
 
     public void setTitle(String title) {
-        this.title = title.length() > TITLE_LENGTH ? title.substring(0,TITLE_LENGTH) : title;
+        if (title == null) return;
+        this.title = title.length() > TITLE_LENGTH ? title.substring(0, TITLE_LENGTH) : title;
     }
 
     public String getAuthor() {
@@ -66,16 +69,8 @@ public class NewsItem extends BaseEntity implements FeedItem {
     }
 
     public void setAuthor(String author) {
-        try {
-            int size = getClass().getDeclaredField("author").getAnnotation(Column.class).length();
-            int inLength = author.length();
-            if (inLength > size)
-            {
-                author = author.substring(0, size);
-            }
-        } catch (NoSuchFieldException | SecurityException | NullPointerException ex) {
-        }
-        this.author = author;
+        if (author == null) return;
+        this.author = author.length() > AUTHOR_LENGTH ? author.substring(0, AUTHOR_LENGTH) : author;
     }
 
     public String getSummary() {
@@ -83,16 +78,8 @@ public class NewsItem extends BaseEntity implements FeedItem {
     }
 
     public void setSummary(String summary) {
-        try {
-            int size = getClass().getDeclaredField("summary").getAnnotation(Column.class).length();
-            int inLength = summary.length();
-            if (inLength > size)
-            {
-                summary = summary.substring(0, size);
-            }
-        } catch (NoSuchFieldException | SecurityException | NullPointerException ex) {
-        }
-        this.summary = summary;
+        if (summary == null) return;
+        this.summary = summary.length() > SUMMARY_LENGTH ? summary.substring(0, SUMMARY_LENGTH) : summary;
     }
 
     public String getUrl() {
@@ -118,4 +105,6 @@ public class NewsItem extends BaseEntity implements FeedItem {
     public void setUrlToImage(String urlToImage) {
         this.urlToImage = urlToImage;
     }
+
+
 }

@@ -28,6 +28,7 @@ public class NewsSourceLoaderServiceImpl implements NewsSourceLoaderService {
 
     // TODO: Eventually run this only if it hasn't been run recently
     // TODO: Fix naming of local variables here
+
     @Async
     public Future<List<NewsSource>> fetchAllNewsSourcesFromApi(){
 

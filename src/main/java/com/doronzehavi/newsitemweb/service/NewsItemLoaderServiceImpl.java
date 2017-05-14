@@ -22,6 +22,7 @@ import java.util.concurrent.Future;
 @Service
 public class NewsItemLoaderServiceImpl implements NewsItemLoaderService {
 
+    // TODO: Don't drop table, add new stories to it
     // TODO: Pull out of this class
     private static final String NEWSAPI_API_KEY = "0ca610c61a054ab58ab294304e556431";
 
