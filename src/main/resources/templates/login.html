@@ -53,9 +53,9 @@
             <div class="mdc-card login-card">
               <form name="login" class="mdc-form-field login-form" th:action="@{/login}" method="post">
                 <section  class="mdc-card__primary">
-                  <h1 class="mdc-card__title mdc-card__title--large">Login</h1>
+                  <h1 class="mdc-card__title mdc-card__title--large login-title">Login</h1>
                 </section> 
-                <section>
+                <section class="login-fields">
                   <div th:if="${param.error}" class="alert alert-error">
                     Invalid username and password.
                   </div>
@@ -70,6 +70,7 @@
 
                   <div class="form-actions">
                     <button type="submit" class="mdc-button mdc-button--raised">Log in</button>
+                    <a href="/register"><button class="mdc-button mdc-button--raised">Register</button></a>
                   </div>
                 </section>
               </form>
