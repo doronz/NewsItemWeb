@@ -2,8 +2,9 @@ package com.doronzehavi.newsitemweb;
 
 import com.doronzehavi.newsitemweb.dao.item.NewsItemDao;
 import com.doronzehavi.newsitemweb.dao.source.NewsSourceDao;
-import com.doronzehavi.newsitemweb.dao.user.UserDao;
+import com.doronzehavi.newsitemweb.dao.user.UserRepository;
 import com.doronzehavi.newsitemweb.model.item.NewsItem;
+import com.doronzehavi.newsitemweb.model.role.Role;
 import com.doronzehavi.newsitemweb.model.source.NewsSource;
 import com.doronzehavi.newsitemweb.model.user.User;
 import com.doronzehavi.newsitemweb.service.NewsItemLoaderService;
@@ -12,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.Future;
 
 @Component
@@ -25,7 +28,8 @@ public class AppRunner implements CommandLineRunner {
     private NewsItemDao newsItemDao;
 
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
+
 
     private final NewsSourceLoaderService newsSourceLoaderService;
 
@@ -41,10 +45,15 @@ public class AppRunner implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
+        Set<Role> roleSet = new HashSet<Role>();
+        roleSet.add(new Role("admin"));
+        roleSet.add(new Role("user"));
+
+
         // Create admin user
         // TODO: Only create user if doesn't exist
-        userDao.save(new User("doron", "doron1zehavi@gmail.com", "admin",
-                new String[]{"ADMIN", "USER"}));
+        userRepository.save(new User("doron", "doron1zehavi@gmail.com", "admin",
+                roleSet));
 
         // TODO: Only load news sources if they haven't been updated in a while
         // TODO: Schedule this

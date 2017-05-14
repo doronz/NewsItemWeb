@@ -40,7 +40,7 @@ public class NewsItem extends BaseEntity implements FeedItem {
     private Date date;
 
     @ManyToOne
-    @JoinColumn(name="newssource_id")
+    @JoinColumn(name="newssource")
     private NewsSource newsSource;
 
     protected NewsItem(){

@@ -1,10 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="mdc-typography" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login | My Own Feed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" th:href="@{/node_modules/material-components-web/dist/material-components-web.css}"
+          type="text/css" href="../../static/node_modules/material-components-web/dist/material-components-web.css"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" type="text/css" href="../../static/css/styles.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
 </head>
-<body>
+<body class="doron-body mdc-typography">
+<aside class="mdc-persistent-drawer">
+    <nav class="mdc-persistent-drawer__drawer">
+        <div class="mdc-persistent-drawer__toolbar-spacer"></div>
+        <div class="mdc-list-group">
+            <nav class="mdc-list">
+                <a class="mdc-list-item" href="/feed">
+                    <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">view_stream</i>Feed
+                </a>
+                <a class="mdc-list-item" href="/sources">
+                    <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Sources
+                </a>
+            </nav>
 
+            <hr class="mdc-list-divider"/>
+
+            <nav class="mdc-list">
+                <a class="mdc-list-item mdc-persistent-drawer--selected" href="/login">
+                    Log In
+                </a>
+                <a class="mdc-list-item" href="/register">
+                    Sign Up
+                </a>
+                <a class="mdc-list-item" href="/about">
+                    About
+                </a>
+            </nav>
+        </div>
+    </nav>
+</aside>
+<div class="doron-content">
+    <header class="mdc-toolbar mdc-elevation--z4">
+        <div class="mdc-toolbar__row">
+            <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+                <button class="doron-menu material-icons">menu</button>
+                <span class="mdc-toolbar__title catalog-title">my own feed</span>
+            </section>
+        </div>
+    </header>
+
+    <main class="doron-main">
+        <div class="mdc-grid-list grid-login">
+            <div class="mdc-card login-card">
+              <form name="login" class="mdc-form-field login-form" th:action="@{/login}" method="post">
+                <section  class="mdc-card__primary">
+                  <h1 class="mdc-card__title mdc-card__title--large">Login</h1>
+                </section> 
+                <section>
+                  <div th:if="${param.error}" class="alert alert-error">
+                    Invalid username and password.
+                  </div>
+                  <div class="mdc-textfield">
+                    <label class="mdc-textfield__label" for="username">Username</label>
+                    <input class="mdc-textfield__input" type="text" id="username" name="username"/>
+                  </div>
+                  <div class="mdc-textfield">
+                    <label class="mdc-textfield__label" for="password">Password</label>
+                    <input class="mdc-textfield__input" type="password" id="password" name="password"/>
+                  </div>
+
+                  <div class="form-actions">
+                    <button type="submit" class="mdc-button mdc-button--raised">Log in</button>
+                  </div>
+                </section>
+              </form>
+            </div>
+          </div>
+        <div class="footer "></div>
+    </main>
+
+</div>
+<script th:src="@{/node_modules/material-components-web/dist/material-components-web.js}"
+        src="../../static/node_modules/material-components-web/dist/material-components-web.js"></script>
+<script th:src="@{/js/app.js}"
+        src="../../static/js/app.js"> </script>
 </body>
 </html>

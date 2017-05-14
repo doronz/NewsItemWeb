@@ -1,7 +1,10 @@
 package com.doronzehavi.newsitemweb.service;
 
-/**
- * Created by doronzehavi on 5/12/17.
- */
+
+import com.doronzehavi.newsitemweb.model.user.User;
+
 public interface UserService {
+    void save(User user);
+
+    User findByUsername(String username);
 }

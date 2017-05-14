@@ -97,3 +97,24 @@ html {
   height: 128px;
   background-color: #34495e;
 }
+
+.login-card {
+    margin: auto;
+    padding: 16px;
+    max-width: 90%;
+    max-height: 90%;
+  min-width: 50%;
+  min-height: 50%;
+}
+
+.login-form {
+  margin: auto;
+  flex-direction: column;
+}
+
+
+.grid-login {
+  min-height: 80%;
+  display: flex;
+  justify-content: center;
+}

@@ -1,6 +1,6 @@
 <html lang="en" class="mdc-typography" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>My Own Feed | Feed</title>
+  <title>Feed | My Own Feed</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="stylesheet" th:href="@{/node_modules/material-components-web/dist/material-components-web.css}" type="text/css" href="../../static/node_modules/material-components-web/dist/material-components-web.css"/>
   <link rel="stylesheet" th:href="@{/css/styles.css}" type="text/css" href="../../static/css/styles.css"  />
@@ -24,13 +24,13 @@
           <hr class="mdc-list-divider"/>
 
           <nav class="mdc-list">
-            <a class="mdc-list-item" href="#">
-              Log In
+            <a th:text="${user} == null ? 'Log In' : 'Log Out (' + ${user} + ')'" th:href="@{${user} == null ? '/login' : '/logout'}" class="mdc-list-item" href="/login">
+              Log In'
             </a>
-            <a class="mdc-list-item" href="#">
+            <a th:if="${user} == null" class="mdc-list-item" href="/register">
               Sign Up
             </a>
-            <a class="mdc-list-item" href="#">
+            <a class="mdc-list-item" href="/about">
               About
             </a>
           </nav>
@@ -80,20 +80,7 @@
     
     </div>
     <script th:src="@{/node_modules/material-components-web/dist/material-components-web.js}" src="../../static/node_modules/material-components-web/dist/material-components-web.js"></script>
-    <script>
-        var drawerEl = document.querySelector('.mdc-persistent-drawer');
-        var MDCPersistentDrawer = mdc.drawer.MDCPersistentDrawer;
-        var drawer = new MDCPersistentDrawer(drawerEl);
-        document.querySelector('.doron-menu').addEventListener('click', function() {
-          drawer.open = !drawer.open;
-        });
-        drawerEl.addEventListener('MDCPersistentDrawer:open', function() {
-          console.log('Received MDCPersistentDrawer:open');
-        });
-        drawerEl.addEventListener('MDCPersistentDrawer:close', function() {
-          console.log('Received MDCPersistentDrawer:close');
-        });
-      </script>
-      <script>mdc.autoInit()</script>
+<script th:src="@{/js/app.js}"
+        src="../../static/js/app.js"> </script>
   </body>
 </html>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,12 +27,13 @@ public class FeedController {
     private NewsSourceService newsSourceService;
 
     @RequestMapping(value = {"/feed", "/feed/0"})
-    public String showFeed(Model model) {
+    public String showFeed(Model model, Principal principal) {
         Page<NewsItem> page = newsItemService.fetchNewsItemsByPage(1);
         int current = page.getNumber() + 1;
         int next = current + 1;
         int last = page.getTotalPages();
 
+        model.addAttribute("user", principal == null ? null : principal.getName());
         model.addAttribute("sourceMap", getMapOfNewsSourcesById());
         model.addAttribute("newsfeed", page.getContent());
         model.addAttribute("current", current);
@@ -42,7 +44,7 @@ public class FeedController {
     }
 
     @RequestMapping(value = "/feed/{pageNumber}")
-    public String showFeedByPage(@PathVariable Integer pageNumber, Model model) {
+    public String showFeedByPage(@PathVariable Integer pageNumber, Model model, Principal principal) {
         Page<NewsItem> page = newsItemService.fetchNewsItemsByPage(pageNumber);
         int current = pageNumber;
         int next = current + 1;

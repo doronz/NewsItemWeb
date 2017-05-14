@@ -16,4 +16,16 @@ public abstract class BaseEntity {
     protected BaseEntity() {
         id = null;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
 }
