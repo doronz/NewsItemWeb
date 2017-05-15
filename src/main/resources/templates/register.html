@@ -25,10 +25,10 @@
             <hr class="mdc-list-divider"/>
 
             <nav class="mdc-list">
-                <a th:text="${user} == null ? 'Log In' : 'Log Out (' + ${user} + ')'" th:href="@{${user} == null ? '/login' : '/logout'}" class="mdc-list-item mdc-persistent-drawer--selected" href="/login">
+                <a th:text="${user} == null ? 'Log In' : 'Log Out (' + ${user} + ')'" th:href="@{${user} == null ? '/login' : '/logout'}" class="mdc-list-item" href="/login">
                     Log In'
                 </a>
-                <a th:if="${user} == null" class="mdc-list-item" href="/register">
+                <a th:if="${user} == null" class="mdc-list-item mdc-persistent-drawer--selected" href="/register">
                     Sign Up
                 </a>
                 <a class="mdc-list-item" href="/about">
@@ -51,27 +51,38 @@
     <main class="doron-main">
         <div class="mdc-grid-list grid-login">
             <div class="mdc-card login-card">
-              <form name="login" class="mdc-form-field login-form" th:action="@{/login}" method="post">
+              <form autocomplete="off" action="#" th:action="@{/register}"
+                    th:object="${user}" name="register" class="mdc-form-field login-form"  method="post">
                 <section  class="mdc-card__primary">
-                  <h1 class="mdc-card__title mdc-card__title--large login-title">Login</h1>
+                  <h1 class="mdc-card__title mdc-card__title--large login-title">Register</h1>
                 </section> 
                 <section class="login-fields">
-                  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                  <div th:if="${param.error}" class="alert alert-error">
-                    Invalid username and password.
-                  </div>
                   <div class="mdc-textfield">
-                      <input class="mdc-textfield__input" type="text" id="username" name="username" required="true"  th:required="required"/>
-                      <label class="mdc-textfield__label" for="username" >Username</label>
+                    <input class="mdc-textfield__input" type="text" id="email" aria-controls="em-validation-msg" th:field="*{email}" name="email" required="true" th:required="required"/>
+                    <label class="mdc-textfield__label" for="email" >E-mail</label>
                   </div>
+                  <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="mdc-textfield-helptext mdc-textfield-helptext--persistent mdc-textfield-helptext--validation-msg"
+                       id="em-validation-msg">
+                        Enter a valid email address
+                    </p>
                   <div class="mdc-textfield">
-                     <input class="mdc-textfield__input" type="password" id="password" name="password" required="true"  th:required="required"/>
-                     <label class="mdc-textfield__label" for="password">Password</label>
+                    <input class="mdc-textfield__input" type="text" id="username" aria-controls="un-validation-msg" th:field="*{username}" name="username" required="true"  th:required="required"/>
+                    <label class="mdc-textfield__label" for="username" >Username</label>
                   </div>
-
+                  <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="mdc-textfield-helptext mdc-textfield-helptext--persistent mdc-textfield-helptext--validation-msg"
+                       id="un-validation-msg">
+                        Enter a valid username
+                    </p>
+                  <div class="mdc-textfield">
+                    <input class="mdc-textfield__input" type="password" id="password" aria-controls="pw-validation-msg" th:field="*{password}" name="password"  pattern=".{6,}" required="true"  th:required="required"/>
+                    <label class="mdc-textfield__label" for="password" >Password</label>
+                  </div>
+                    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="mdc-textfield-helptext mdc-textfield-helptext--persistent mdc-textfield-helptext--validation-msg"
+                       id="pw-validation-msg">
+                       Enter a valid password
+                    </p>
                   <div class="form-actions">
-                    <button type="submit" class="mdc-button mdc-button--raised">Log in</button>
-                    <a href="/register"><button type="button" class="mdc-button mdc-button--raised">Register</button></a>
+                    <a href="/register"><button type="submit" class="mdc-button mdc-button--raised">Register</button></a>
                   </div>
                 </section>
               </form>

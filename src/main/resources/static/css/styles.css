@@ -100,7 +100,7 @@ html {
 
 .login-card {
     margin: auto;
-    padding: 32px 64px;
+    padding: 32px 96px;
     max-width: 90%;
     max-height: 90%;
 }
@@ -128,4 +128,13 @@ html {
 
 .form-actions {
       margin-top: 16px;
+}
+
+.mdc-textfield__input{
+  width: 100%;
+}
+
+.mdc-textfield__label--float-above {
+    -webkit-transform: translateY(-50%) scale(0.75, 0.75);
+    transform: translateY(-50%) scale(0.75, 0.75);
 }

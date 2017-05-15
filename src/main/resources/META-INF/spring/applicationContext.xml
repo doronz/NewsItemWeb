@@ -4,6 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jee="http://www.springframework.org/schema/jee"
        xmlns:tx="http://www.springframework.org/schema/tx"
+
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
@@ -45,5 +46,10 @@
     </bean>
     <bean class="java.net.URI" id="dbUrl">
       <constructor-arg value="${DATABASE_URL}"/>
+    </bean>
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+          >
+        <property name="basename" value="classpath*:META-INF/spring/validation"/>
     </bean>
 </beans>

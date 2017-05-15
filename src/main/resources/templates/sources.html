@@ -24,10 +24,10 @@
           <hr class="mdc-list-divider"/>
 
           <nav class="mdc-list">
-            <a class="mdc-list-item" href="/login">
-              Log In
+            <a th:text="${user} == null ? 'Log In' : 'Log Out (' + ${user} + ')'" th:href="@{${user} == null ? '/login' : '/logout'}" class="mdc-list-item" href="/login">
+              Log In'
             </a>
-            <a class="mdc-list-item" href="/register">
+            <a th:if="${user} == null" class="mdc-list-item" href="/register">
               Sign Up
             </a>
             <a class="mdc-list-item" href="/about">

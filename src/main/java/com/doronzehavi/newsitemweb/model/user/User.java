@@ -37,12 +37,12 @@ public class User extends BaseEntity{
         this();
         this.username = username;
         this.email = email;
-        setPassword(password);
+        this.password = password;
         this.roles = roles;
     }
 
     public void setPassword(String password){
-        this.password = PASSWORD_ENCODER.encode(password);
+        this.password = password;
     }
 
     public String getUsername() {

@@ -45,16 +45,6 @@ public class AppRunner implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
-        Set<Role> roleSet = new HashSet<Role>();
-        roleSet.add(new Role("admin"));
-        roleSet.add(new Role("user"));
-
-
-        // Create admin user
-        // TODO: Only create user if doesn't exist
-        userRepository.save(new User("doron", "doron1zehavi@gmail.com", "admin",
-                roleSet));
-
         // TODO: Only load news sources if they haven't been updated in a while
         // TODO: Schedule this
         Future<List<NewsSource>> futureNewsSourcesList = newsSourceLoaderService.fetchAllNewsSourcesFromApi();
