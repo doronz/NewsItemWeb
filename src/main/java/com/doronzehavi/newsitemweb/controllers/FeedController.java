@@ -51,6 +51,7 @@ public class FeedController {
         int prev = current - 1;
         int last = page.getTotalPages() - 1;
 
+        model.addAttribute("user", principal == null ? null : principal.getName());
         model.addAttribute("newsfeed", page.getContent());
         model.addAttribute("current", current);
         model.addAttribute("next", next <= last ? next : null);

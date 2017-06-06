@@ -6,6 +6,8 @@
   <link rel="stylesheet" th:href="@{/css/styles.css}" type="text/css" href="../../static/css/styles.css"  />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope|Loved+by+the+King|Nothing+You+Could+Do|Reenie+Beanie|Rock+Salt" rel="stylesheet"/>
 </head>
   <body class="doron-body mdc-typography">
     <aside class="mdc-persistent-drawer">
@@ -28,7 +30,7 @@
               Log In'
             </a>
             <a th:if="${user} == null" class="mdc-list-item" href="/register">
-              Sign Up
+              Register
             </a>
             <a class="mdc-list-item" href="/about">
               About
@@ -42,7 +44,7 @@
         <div class="mdc-toolbar__row">
           <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
             <button class="doron-menu material-icons">menu</button>
-            <span class="mdc-toolbar__title catalog-title">my own feed</span>
+            <span id="myownfeed" class="mdc-toolbar__title catalog-title">My Own Feed</span>
           </section>
         </div>
       </header>

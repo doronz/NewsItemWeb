@@ -3,6 +3,11 @@ html {
   height: 100%;
 }
 
+#myownfeed {
+font-family: 'Bungee Hairline', cursive;
+  font-size: 32px;
+}
+
 .doron-body {
   display: flex;
   flex-direction: row;
